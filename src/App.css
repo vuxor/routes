@@ -84,6 +84,37 @@
   background: #f5f5f5;
 }
 
+.App-go {
+  font-size: 2.4rem;
+  padding: 1rem 2rem;
+  border: 2px solid #fff;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.35s ease-in-out;
+  border-radius: 10px;
+}
+
+.App-go:hover,
+.App-go:focus {
+  color: #333;
+  /*border: 2px solid #333;*/
+  background: #fff;
+}
+
+.App-go svg {
+  transition: all 0.35s ease-in-out;
+}
+
+.App-go:hover svg,
+.App-go:focus svg {
+  fill: #333;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
