@@ -5,9 +5,45 @@ import LocationInput from './LocationInput';
 import './App.css';
 import routeIcon from './ic_near_me_black_24px.svg';
 import deleteIcon from './ic_close_red_24px.svg';
-import goIcon from './ic_arrow_forward_24px.svg';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      storageError: false
+    };
+  }
+  componentDidMount() {
+    if (!this.storageAvailable('localStorage')) {
+      this.setState({
+        storageError: true
+      });
+    }
+  }
+  storageAvailable(type) {
+    try {
+      var storage = window[type],
+        x = '__storage_test__';
+      storage.setItem(x, x);
+      storage.removeItem(x);
+      return true;
+    } catch (e) {
+      return (
+        e instanceof DOMException &&
+        // everything except Firefox
+        (e.code === 22 ||
+          // Firefox
+          e.code === 1014 ||
+          // test name field too, because code might not be present
+          // everything except Firefox
+          e.name === 'QuotaExceededError' ||
+          // Firefox
+          e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+        // acknowledge QuotaExceededError only if there's something already stored
+        storage.length !== 0
+      );
+    }
+  }
   render() {
     return (
       <div className="App">
