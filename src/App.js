@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import LocationInput from './LocationInput';
 import './App.css';
@@ -24,7 +25,17 @@ class App extends Component {
               placeChanged={place => console.log(place)}
             />
           </div>
-          <div className="App-list" />
+          <div className="App-list">
+            <p className="App-intro">Your Previous Routes</p>
+            <ul>
+              <li>
+                <Link to="/something">
+                  <span>icon</span>
+                  <span>text</span>
+                </Link>
+              </li>
+            </ul>
+          </div>
         </main>
       </div>
     );

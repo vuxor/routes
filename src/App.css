@@ -21,6 +21,9 @@
 
 .App-intro {
   font-size: large;
+}
+
+.App-form .App-intro {
   color: #fff;
 }
 
