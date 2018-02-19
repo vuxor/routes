@@ -50,6 +50,10 @@
   margin: 0;
 }
 
+.App-routes-icon {
+  margin-right: 2rem;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

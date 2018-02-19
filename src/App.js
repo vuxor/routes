@@ -32,7 +32,12 @@ class App extends Component {
               <li>
                 <Link to="/something">
                   <span>
-                    <img src={routeIcon} width="50px" alt="Route icon" />
+                    <img
+                      className="App-routes-icon"
+                      src={routeIcon}
+                      width="50px"
+                      alt="Route icon"
+                    />
                   </span>
                   <span>text</span>
                 </Link>
