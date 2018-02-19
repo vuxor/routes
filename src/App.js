@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import LocationInput from './LocationInput';
 import './App.css';
-import routeIcon from './route_icon.png';
+import routeIcon from './ic_near_me_black_24px.svg';
 
 class App extends Component {
   render() {
