@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import LocationInput from './LocationInput';
 import './App.css';
+import routeIcon from './route_icon.png';
 
 class App extends Component {
   render() {
@@ -30,7 +31,9 @@ class App extends Component {
             <ul>
               <li>
                 <Link to="/something">
-                  <span>icon</span>
+                  <span>
+                    <img src={routeIcon} width="50px" alt="Route icon" />
+                  </span>
                   <span>text</span>
                 </Link>
               </li>
