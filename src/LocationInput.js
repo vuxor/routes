@@ -45,11 +45,9 @@ const LocationInput = compose(
         className="LocationInput-input"
       />
     </StandaloneSearchBox>
-    {props.places.map(
-      ({ place_id, formatted_address, geometry: { location } }) => (
-        <p key={place_id}>{formatted_address}</p>
-      )
-    )}
+    {props.places.map(({ place_id, formatted_address }) => (
+      <p key={place_id}>{formatted_address}</p>
+    ))}
   </div>
 ));
 
