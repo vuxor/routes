@@ -1,3 +1,7 @@
+.LocationInput {
+  margin-bottom: 2rem;
+}
+
 .LocationInput-input {
   box-sizing: border-box;
   width: 240px;
