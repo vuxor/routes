@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import LocationInput from './LocationInput';
 import './App.css';
 import routeIcon from './ic_near_me_black_24px.svg';
+import deleteIcon from './ic_close_black_24px.svg';
 
 class App extends Component {
   render() {
@@ -29,7 +30,7 @@ class App extends Component {
           <div className="App-list">
             <p className="App-intro">Your Previous Routes</p>
             <ul>
-              <li>
+              <li className="App-list-item">
                 <Link to="/something" className="App-routes-link">
                   <span>
                     <img
@@ -39,8 +40,15 @@ class App extends Component {
                       alt="Route icon"
                     />
                   </span>
-                  <span>text</span>
+                  <span className="App-list-text">
+                    Origin point<br />Destination point
+                  </span>
                 </Link>
+                <span className="App-delete">
+                  <a>
+                    <img src={deleteIcon} alt="Delete" />
+                  </a>
+                </span>
               </li>
             </ul>
           </div>
