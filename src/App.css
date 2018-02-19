@@ -38,6 +38,12 @@
   padding: 2rem;
 }
 
+.App-list {
+  text-align: left;
+  padding: 2rem;
+  padding-top: 1rem;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
