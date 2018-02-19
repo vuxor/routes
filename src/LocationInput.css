@@ -1,0 +1,19 @@
+.LocationInput-input {
+  box-sizing: border-box;
+  width: 240px;
+  height: 3.2rem;
+  border: 1px solid transparent;
+  background: transparent;
+  padding: 0 1.2rem;
+  font-size: 1.5rem;
+  color: #fff;
+  line-height: 2.4rem;
+  text-overflow: ellipsis;
+  border-bottom: 1px solid #97bcf9;
+  outline: none;
+}
+
+.LocationInput-input::placeholder {
+  color: #fff;
+  opacity: 0.4;
+}
