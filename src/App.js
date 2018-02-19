@@ -30,7 +30,7 @@ class App extends Component {
             <p className="App-intro">Your Previous Routes</p>
             <ul>
               <li>
-                <Link to="/something">
+                <Link to="/something" className="App-routes-link">
                   <span>
                     <img
                       className="App-routes-icon"

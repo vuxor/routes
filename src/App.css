@@ -50,6 +50,11 @@
   margin: 0;
 }
 
+.App-routes-link {
+  display: flex;
+  align-items: center;
+}
+
 .App-routes-icon {
   margin-right: 2rem;
 }
