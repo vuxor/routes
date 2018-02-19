@@ -10,9 +10,11 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Routes</h1>
         </header>
-        <p className="App-intro">Please enter your starting and end point</p>
         <main className="App-main">
           <div className="App-form">
+            <p className="App-intro">
+              Please enter your starting and end point
+            </p>
             <LocationInput
               placeholderText="Enter your starting point"
               placeChanged={places => console.log(places)}
