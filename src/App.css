@@ -16,11 +16,22 @@
 }
 
 .App-title {
-  font-size: 1.5em;
+  font-size: 3rem;
 }
 
 .App-intro {
   font-size: large;
+}
+
+.App-main {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.App-form {
+  background: #4285f4;
+  text-align: left;
+  padding: 2rem;
 }
 
 @keyframes App-logo-spin {
