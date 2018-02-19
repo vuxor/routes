@@ -8,9 +8,11 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Routes</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <p className="App-intro">Please enter your starting and end point</p>
+        <main>
+          <div className="App-form" />
+          <div className="App-list" />
+        </main>
       </div>
     );
   }
