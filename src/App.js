@@ -13,8 +13,14 @@ class App extends Component {
         <p className="App-intro">Please enter your starting and end point</p>
         <main className="App-main">
           <div className="App-form">
-            <LocationInput placeholderText="Enter your starting point" />
-            <LocationInput placeholderText="Enter your destination" />
+            <LocationInput
+              placeholderText="Enter your starting point"
+              placeChanged={places => console.log(places)}
+            />
+            <LocationInput
+              placeholderText="Enter your destination"
+              placeChanged={place => console.log(place)}
+            />
           </div>
           <div className="App-list" />
         </main>

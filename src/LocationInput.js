@@ -17,17 +17,10 @@ const LocationInput = compose(
       const refs = {};
 
       this.setState({
-        places: [],
         onSearchBoxMounted: ref => {
           refs.searchBox = ref;
         },
-        onPlacesChanged: () => {
-          const places = refs.searchBox.getPlaces();
-
-          this.setState({
-            places
-          });
-        }
+        onPlacesChanged: () => refs.searchBox.getPlaces()
       });
     }
   }),
@@ -37,7 +30,9 @@ const LocationInput = compose(
     <StandaloneSearchBox
       ref={props.onSearchBoxMounted}
       bounds={props.bounds}
-      onPlacesChanged={props.onPlacesChanged}
+      onPlacesChanged={() => {
+        props.placeChanged(props.onPlacesChanged());
+      }}
     >
       <input
         type="text"
@@ -45,9 +40,6 @@ const LocationInput = compose(
         className="LocationInput-input"
       />
     </StandaloneSearchBox>
-    {props.places.map(({ place_id, formatted_address }) => (
-      <p key={place_id}>{formatted_address}</p>
-    ))}
   </div>
 ));
 
