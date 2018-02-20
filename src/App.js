@@ -13,7 +13,9 @@ class App extends Component {
       storageError: false,
       origin: null,
       destination: null,
-      routes: []
+      routes: localStorage.getItem('routes')
+        ? JSON.parse(localStorage.getItem('routes'))
+        : []
     };
     this.handleButtonClick = this.handleButtonClick.bind(this);
   }
@@ -50,19 +52,16 @@ class App extends Component {
   }
   handleButtonClick() {
     if (this.state.origin && this.state.destination) {
+      const newRoute = {
+        id: this.state.origin.place_id + '&&' + this.state.destination.place_id,
+        origin: this.state.origin,
+        destination: this.state.destination
+      };
+      const newRoutes = [newRoute, ...this.state.routes];
       this.setState({
-        routes: [
-          {
-            id:
-              this.state.origin.place_id +
-              '&&' +
-              this.state.destination.place_id,
-            origin: this.state.origin,
-            destination: this.state.destination
-          },
-          ...this.state.routes
-        ]
+        routes: newRoutes
       });
+      localStorage.setItem('routes', JSON.stringify(newRoutes));
     }
   }
   render() {
