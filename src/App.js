@@ -143,7 +143,7 @@ class App extends Component {
                         </span>
                         <span className="App-list-text">
                           {route.origin.formatted_address}
-                          <br />
+                          <hr />
                           {route.destination.formatted_address}
                         </span>
                       </Link>
