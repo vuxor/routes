@@ -1,1 +1,25 @@
+.RouteDetail header {
+  text-align: center;
+}
 
+.RouteDetail-back {
+  margin-bottom: 1rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  color: #333;
+  font-size: 1.5rem;
+  padding: 1rem 2rem;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  transition: all 0.35s ease-in-out;
+}
+
+.RouteDetail-back:hover {
+  background: #eee;
+}
+
+.RouteDetail h1 {
+  margin: 3rem auto;
+  font-size: 3rem;
+}
