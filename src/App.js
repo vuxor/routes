@@ -154,13 +154,12 @@ class App extends Component {
                           {route.destination.formatted_address}
                         </span>
                       </Link>
-                      <span className="App-delete">
-                        <button
-                          onClick={e => this.handleDeleteRoute(e, route.id)}
-                        >
-                          <img src={deleteIcon} alt="Delete" />
-                        </button>
-                      </span>
+                      <button
+                        className="App-delete"
+                        onClick={e => this.handleDeleteRoute(e, route.id)}
+                      >
+                        <img src={deleteIcon} alt="Delete" />
+                      </button>
                     </li>
                   ))
                 ) : (
