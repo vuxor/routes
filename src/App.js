@@ -88,7 +88,10 @@ class App extends Component {
                   })
                 }
               />
-              <button disabled className="App-go">
+              <button
+                disabled={!(this.state.origin && this.state.destination)}
+                className="App-go"
+              >
                 <span>Go</span>
                 <svg
                   fill="#fff"
