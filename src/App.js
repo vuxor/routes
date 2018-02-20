@@ -11,6 +11,7 @@ class App extends Component {
     super(props);
     this.state = {
       storageError: false,
+      navigatorError: false,
       origin: null,
       destination: null,
       routes: localStorage.getItem('routes')
@@ -19,11 +20,57 @@ class App extends Component {
     };
     this.handleButtonClick = this.handleButtonClick.bind(this);
     this.handleDeleteRoute = this.handleDeleteRoute.bind(this);
+    this.getCurrentLocation = this.getCurrentLocation.bind(this);
   }
   componentDidMount() {
     if (!this.storageAvailable('localStorage')) {
       this.setState({
         storageError: true
+      });
+    }
+  }
+  getCurrentLocation() {
+    if ('geolocation' in window.navigator) {
+      window.navigator.geolocation.getCurrentPosition(position => {
+        const geocoder = new window.google.maps.Geocoder();
+        geocoder.geocode(
+          {
+            location: {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            }
+          },
+          (results, status) => {
+            if (status === 'OK') {
+              if (results[0]) {
+                this.setState({
+                  origin: {
+                    formatted_address: results[0].formatted_address,
+                    place_id: results[0].place_id,
+                    lat: results[0].geometry.location.lat(),
+                    lng: results[0].geometry.location.lng()
+                  }
+                });
+                let origin = document.getElementsByClassName(
+                  'LocationInput-input'
+                )[0];
+                origin.value = results[0].formatted_address;
+              } else {
+                this.setState({
+                  navigatorError: 'No results found'
+                });
+              }
+            } else {
+              this.setState({
+                navigatorError: 'Geocoder failed. Please try again later.'
+              });
+            }
+          }
+        );
+      });
+    } else {
+      this.setState({
+        navigatorError: "Your browser doesn't support geolocation."
       });
     }
   }
@@ -109,9 +156,15 @@ class App extends Component {
                   color: '#fff'
                 }}
               >
-                or<button className="App-current-location">
+                or<button
+                  onClick={this.getCurrentLocation}
+                  className="App-current-location"
+                >
                   Use your current location
                 </button>
+                {this.state.navigatorError && (
+                  <div className="App-error">{this.state.navigatorError}</div>
+                )}
               </div>
               <LocationInput
                 placeholderText="Enter your destination"
