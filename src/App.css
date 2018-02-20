@@ -86,6 +86,16 @@
   margin-right: 1rem;
 }
 
+.App-current-location {
+  border: 1px solid #fff;
+  margin-left: 0.5rem;
+  padding: 0.7rem;
+  border-radius: 2px;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
 .App-delete {
   position: absolute;
   top: 0;

@@ -102,6 +102,17 @@ class App extends Component {
                   })
                 }
               />
+              <div
+                style={{
+                  marginTop: '-1.2rem',
+                  marginBottom: '2rem',
+                  color: '#fff'
+                }}
+              >
+                or<button className="App-current-location">
+                  Use your current location
+                </button>
+              </div>
               <LocationInput
                 placeholderText="Enter your destination"
                 placeChanged={places =>
