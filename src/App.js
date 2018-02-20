@@ -10,7 +10,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      storageError: false
+      storageError: false,
+      origin: null,
+      destination: null
     };
   }
   componentDidMount() {
@@ -62,11 +64,29 @@ class App extends Component {
               </p>
               <LocationInput
                 placeholderText="Enter your starting point"
-                placeChanged={places => console.log(places)}
+                placeChanged={places =>
+                  this.setState({
+                    origin: {
+                      formatted_address: places[0].formatted_address,
+                      place_id: places[0].place_id,
+                      lat: places[0].geometry.location.lat(),
+                      lng: places[0].geometry.location.lng()
+                    }
+                  })
+                }
               />
               <LocationInput
                 placeholderText="Enter your destination"
-                placeChanged={place => console.log(place)}
+                placeChanged={places =>
+                  this.setState({
+                    destination: {
+                      formatted_address: places[0].formatted_address,
+                      place_id: places[0].place_id,
+                      lat: places[0].geometry.location.lat(),
+                      lng: places[0].geometry.location.lng()
+                    }
+                  })
+                }
               />
               <Link to="/something" className="App-go">
                 <span>Go</span>
