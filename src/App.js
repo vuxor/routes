@@ -63,6 +63,7 @@ class App extends Component {
         routes: newRoutes
       });
       localStorage.setItem('routes', JSON.stringify(newRoutes));
+      this.props.history.push(`/route/${newRoute.id}`);
     }
   }
   handleDeleteRoute(e, id) {
