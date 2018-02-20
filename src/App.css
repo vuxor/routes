@@ -22,6 +22,7 @@
 .App-header {
   background: url('./bg_image.png');
   background-size: cover;
+  background-attachment: fixed;
   height: 150px;
   padding-top: 3rem;
   color: white;
@@ -53,6 +54,7 @@
 
 .App-list {
   text-align: left;
+  margin: 2rem 0;
 }
 
 .App-list ul {
@@ -127,11 +129,8 @@
   fill: #333;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+@media only screen and (max-width: 768px) {
+  .App-header {
+    background-attachment: scroll;
   }
 }
