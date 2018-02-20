@@ -23,7 +23,7 @@
   background: url('./bg_image.png');
   background-size: cover;
   height: 150px;
-  padding: 20px;
+  padding-top: 3rem;
   color: white;
 }
 
@@ -33,6 +33,7 @@
 
 .App-intro {
   font-size: large;
+  margin-bottom: 1rem;
 }
 
 .App-form .App-intro {
