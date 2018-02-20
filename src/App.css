@@ -108,8 +108,15 @@
 .App-go:hover,
 .App-go:focus {
   color: #333;
-  /*border: 2px solid #333;*/
   background: #fff;
+}
+
+.App-go:disabled {
+  color: #333;
+  border: 2px solid #333;
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: transparent;
 }
 
 .App-go svg {
@@ -117,7 +124,8 @@
 }
 
 .App-go:hover svg,
-.App-go:focus svg {
+.App-go:focus svg,
+.App-go:disabled svg {
   fill: #333;
 }
 
