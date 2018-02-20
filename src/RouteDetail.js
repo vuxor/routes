@@ -22,7 +22,7 @@ const RouteDetail = props => (
       </Link>
     </header>
     <main className="RouteDetail-main">
-      <MapWithRoute />
+      <MapWithRoute routeId={props.match.params.id} />
     </main>
   </div>
 );
