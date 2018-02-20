@@ -12,8 +12,10 @@ class App extends Component {
     this.state = {
       storageError: false,
       origin: null,
-      destination: null
+      destination: null,
+      routes: []
     };
+    this.handleButtonClick = this.handleButtonClick.bind(this);
   }
   componentDidMount() {
     if (!this.storageAvailable('localStorage')) {
@@ -44,6 +46,23 @@ class App extends Component {
         // acknowledge QuotaExceededError only if there's something already stored
         storage.length !== 0
       );
+    }
+  }
+  handleButtonClick() {
+    if (this.state.origin && this.state.destination) {
+      this.setState({
+        routes: [
+          {
+            id:
+              this.state.origin.place_id +
+              '&&' +
+              this.state.destination.place_id,
+            origin: this.state.origin,
+            destination: this.state.destination
+          },
+          ...this.state.routes
+        ]
+      });
     }
   }
   render() {
@@ -91,6 +110,7 @@ class App extends Component {
               <button
                 disabled={!(this.state.origin && this.state.destination)}
                 className="App-go"
+                onClick={this.handleButtonClick}
               >
                 <span>Go</span>
                 <svg
@@ -109,46 +129,34 @@ class App extends Component {
               <p className="App-intro">Your Previous Routes</p>
               <hr />
               <ul>
-                <li className="App-list-item" key={1}>
-                  <Link to="/something" className="App-routes-link">
-                    <span>
-                      <img
-                        className="App-routes-icon"
-                        src={routeIcon}
-                        width="50px"
-                        alt="Route icon"
-                      />
-                    </span>
-                    <span className="App-list-text">
-                      Origin point<br />Destination point
-                    </span>
-                  </Link>
-                  <span className="App-delete">
-                    <a>
-                      <img src={deleteIcon} alt="Delete" />
-                    </a>
-                  </span>
-                </li>
-                <li className="App-list-item" key={2}>
-                  <Link to="/something" className="App-routes-link">
-                    <span>
-                      <img
-                        className="App-routes-icon"
-                        src={routeIcon}
-                        width="50px"
-                        alt="Route icon"
-                      />
-                    </span>
-                    <span className="App-list-text">
-                      Origin point<br />Destination point
-                    </span>
-                  </Link>
-                  <span className="App-delete">
-                    <a>
-                      <img src={deleteIcon} alt="Delete" />
-                    </a>
-                  </span>
-                </li>
+                {this.state.routes.length ? (
+                  this.state.routes.map(route => (
+                    <li className="App-list-item" key={route.id}>
+                      <Link to="/something" className="App-routes-link">
+                        <span>
+                          <img
+                            className="App-routes-icon"
+                            src={routeIcon}
+                            width="50px"
+                            alt="Route icon"
+                          />
+                        </span>
+                        <span className="App-list-text">
+                          {route.origin.formatted_address}
+                          <br />
+                          {route.destination.formatted_address}
+                        </span>
+                      </Link>
+                      <span className="App-delete">
+                        <a>
+                          <img src={deleteIcon} alt="Delete" />
+                        </a>
+                      </span>
+                    </li>
+                  ))
+                ) : (
+                  <li>There isn't any</li>
+                )}
               </ul>
             </div>
           </main>
