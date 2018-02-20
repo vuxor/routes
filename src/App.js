@@ -18,6 +18,7 @@ class App extends Component {
         : []
     };
     this.handleButtonClick = this.handleButtonClick.bind(this);
+    this.handleDeleteRoute = this.handleDeleteRoute.bind(this);
   }
   componentDidMount() {
     if (!this.storageAvailable('localStorage')) {
@@ -63,6 +64,13 @@ class App extends Component {
       });
       localStorage.setItem('routes', JSON.stringify(newRoutes));
     }
+  }
+  handleDeleteRoute(e, id) {
+    const newRoutes = this.state.routes.filter(route => route.id !== id);
+    this.setState({
+      routes: newRoutes
+    });
+    localStorage.setItem('routes', JSON.stringify(newRoutes));
   }
   render() {
     return (
@@ -147,9 +155,11 @@ class App extends Component {
                         </span>
                       </Link>
                       <span className="App-delete">
-                        <a>
+                        <button
+                          onClick={e => this.handleDeleteRoute(e, route.id)}
+                        >
                           <img src={deleteIcon} alt="Delete" />
-                        </a>
+                        </button>
                       </span>
                     </li>
                   ))
