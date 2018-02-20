@@ -84,6 +84,18 @@
   position: absolute;
   top: 0;
   right: 0;
+  border: none;
+  background: transparent;
+  transition: all 0.35s ease-in-out;
+}
+
+.App-delete:hover {
+  background: #ddd;
+}
+
+.App-delete img {
+  width: 24px;
+  height: 24px;
 }
 
 .App-list-item:hover {
