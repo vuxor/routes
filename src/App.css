@@ -81,9 +81,8 @@
 
 .App-delete {
   position: absolute;
-  top: 50%;
+  top: 0;
   right: 0;
-  transform: translateY(-50%);
 }
 
 .App-list-item:hover {
