@@ -66,7 +66,13 @@
 .App-list-item {
   position: relative;
   transition: all 0.35s ease-in-out;
-  padding: 2rem 1rem 2rem 0;
+  padding: 1rem 1rem 1rem 0;
+  margin: 1rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.App-list-text {
+  padding-right: 2rem;
 }
 
 .App-routes-link {
@@ -126,7 +132,7 @@
 .App-go:disabled {
   color: #333;
   border: 2px solid #333;
-  opacity: 0.6;
+  opacity: 0.35;
   cursor: not-allowed;
   background: transparent;
 }
