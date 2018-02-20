@@ -84,12 +84,6 @@
   top: 50%;
   right: 0;
   transform: translateY(-50%);
-  opacity: 0;
-  transition: all 0.5s ease-in-out;
-}
-
-.App-list-item:hover .App-delete {
-  opacity: 1;
 }
 
 .App-list-item:hover {
