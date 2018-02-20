@@ -30,8 +30,8 @@ const RouteDetail = compose(
 
       DirectionsService.route(
         {
-          origin: route.origin.formatted_address,
-          destination: route.destination.formatted_address,
+          origin: { placeId: route.origin.place_id },
+          destination: { placeId: route.destination.place_id },
           travelMode: window.google.maps.TravelMode.DRIVING
         },
         (result, status) => {
