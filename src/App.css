@@ -52,8 +52,6 @@
 
 .App-list {
   text-align: left;
-  padding: 2rem;
-  padding-top: 1rem;
 }
 
 .App-list ul {
@@ -65,7 +63,7 @@
 .App-list-item {
   position: relative;
   transition: all 0.35s ease-in-out;
-  padding: 2rem 1rem;
+  padding: 2rem 1rem 2rem 0;
 }
 
 .App-routes-link {
@@ -76,7 +74,7 @@
 }
 
 .App-routes-icon {
-  margin-right: 2rem;
+  margin-right: 1rem;
 }
 
 .App-delete {
