@@ -12,7 +12,15 @@ const RouteDetail = compose(
     googleMapURL:
       'https://maps.googleapis.com/maps/api/js?key=AIzaSyCWT2mBKoiV053AOTBLsiSiFIDD1S06pt0&v=3.exp&libraries=geometry,places',
     loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `400px` }} />,
+    containerElement: (
+      <div
+        style={{
+          height: `calc(100vh - 180px)`,
+          maxWidth: '800px',
+          margin: '0 auto'
+        }}
+      />
+    ),
     mapElement: <div style={{ height: `100%` }} />
   }),
   withScriptjs,
@@ -40,10 +48,7 @@ const RouteDetail = compose(
     }
   })
 )(props => (
-  <GoogleMap
-    defaultZoom={7}
-    defaultCenter={new window.google.maps.LatLng(41.85073, -87.65126)}
-  >
+  <GoogleMap defaultZoom={7}>
     {props.directions && <DirectionsRenderer directions={props.directions} />}
   </GoogleMap>
 ));

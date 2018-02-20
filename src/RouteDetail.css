@@ -1,9 +1,10 @@
 .RouteDetail header {
   text-align: center;
+  height: 150px;
+  padding-top: 3rem;
 }
 
 .RouteDetail-back {
-  margin-bottom: 1rem;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
@@ -20,6 +21,7 @@
 }
 
 .RouteDetail h1 {
-  margin: 3rem auto;
+  margin: 0 auto;
+  margin-bottom: 3rem;
   font-size: 3rem;
 }
