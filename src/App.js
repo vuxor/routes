@@ -139,7 +139,10 @@ class App extends Component {
                 {this.state.routes.length ? (
                   this.state.routes.map(route => (
                     <li className="App-list-item" key={route.id}>
-                      <Link to="/something" className="App-routes-link">
+                      <Link
+                        to={`/route/${route.id}`}
+                        className="App-routes-link"
+                      >
                         <span>
                           <img
                             className="App-routes-icon"

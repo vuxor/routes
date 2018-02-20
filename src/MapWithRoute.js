@@ -1,7 +1,6 @@
 import React from 'react';
 import { compose, withProps, lifecycle } from 'recompose';
 import {
-  withScriptjs,
   withGoogleMap,
   GoogleMap,
   DirectionsRenderer
@@ -9,30 +8,30 @@ import {
 
 const RouteDetail = compose(
   withProps({
-    googleMapURL:
-      'https://maps.googleapis.com/maps/api/js?key=AIzaSyCWT2mBKoiV053AOTBLsiSiFIDD1S06pt0&v=3.exp&libraries=geometry,places',
     loadingElement: <div style={{ height: `100%` }} />,
     containerElement: (
       <div
         style={{
           height: `calc(100vh - 180px)`,
           maxWidth: '800px',
-          margin: '0 auto'
+          margin: '0 auto',
+          position: 'relative'
         }}
       />
     ),
     mapElement: <div style={{ height: `100%` }} />
   }),
-  withScriptjs,
   withGoogleMap,
   lifecycle({
     componentDidMount() {
       const DirectionsService = new window.google.maps.DirectionsService();
+      const routes = JSON.parse(localStorage.getItem('routes'));
+      const route = routes.filter(route => route.id === this.props.routeId)[0];
 
       DirectionsService.route(
         {
-          origin: new window.google.maps.LatLng(41.85073, -87.65126),
-          destination: new window.google.maps.LatLng(41.85258, -87.65141),
+          origin: route.origin.formatted_address,
+          destination: route.destination.formatted_address,
           travelMode: window.google.maps.TravelMode.DRIVING
         },
         (result, status) => {
@@ -41,16 +40,35 @@ const RouteDetail = compose(
               directions: result
             });
           } else {
-            console.error(`error fetching directions ${result}`);
+            this.setState({
+              directionError: true
+            });
           }
         }
       );
     }
   })
-)(props => (
-  <GoogleMap defaultZoom={7}>
-    {props.directions && <DirectionsRenderer directions={props.directions} />}
-  </GoogleMap>
-));
+)(props => {
+  if (props.directionError) {
+    return (
+      <p
+        className="App-error"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: '50%',
+          transform: 'translateX(-50%)'
+        }}
+      >
+        There was an error. No available routes.
+      </p>
+    );
+  }
+  return (
+    <GoogleMap defaultZoom={7}>
+      {props.directions && <DirectionsRenderer directions={props.directions} />}
+    </GoogleMap>
+  );
+});
 
 export default RouteDetail;
