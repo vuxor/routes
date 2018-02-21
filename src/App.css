@@ -55,6 +55,7 @@
 .App-list {
   text-align: left;
   margin: 2rem 0;
+  padding-left: 0.5rem;
 }
 
 .App-list ul {
