@@ -36,6 +36,7 @@ const RouteDetail = compose(
         },
         (result, status) => {
           if (status === window.google.maps.DirectionsStatus.OK) {
+            console.log(result);
             this.setState({
               directions: result
             });
@@ -65,9 +66,31 @@ const RouteDetail = compose(
     );
   }
   return (
-    <GoogleMap defaultZoom={7}>
-      {props.directions && <DirectionsRenderer directions={props.directions} />}
-    </GoogleMap>
+    <div>
+      {props.directions && (
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            right: '50px',
+            background: '#fff',
+            padding: '1rem'
+          }}
+        >
+          <div style={{ marginBottom: '5px' }}>
+            Distance: {props.directions.routes[0].legs[0].distance.text}
+          </div>
+          <div>
+            Duration: {props.directions.routes[0].legs[0].duration.text}
+          </div>
+        </div>
+      )}
+      <GoogleMap defaultZoom={7}>
+        {props.directions && (
+          <DirectionsRenderer directions={props.directions} />
+        )}
+      </GoogleMap>
+    </div>
   );
 });
 
