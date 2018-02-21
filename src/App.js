@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { TransitionMotion, spring, presets } from 'react-motion';
 
 import LocationInput from './LocationInput';
 import './App.css';
@@ -21,6 +22,8 @@ class App extends Component {
     this.handleButtonClick = this.handleButtonClick.bind(this);
     this.handleDeleteRoute = this.handleDeleteRoute.bind(this);
     this.getCurrentLocation = this.getCurrentLocation.bind(this);
+    this.getDefaultStyles = this.getDefaultStyles.bind(this);
+    this.getStyles = this.getStyles.bind(this);
   }
   componentDidMount() {
     if (!this.storageAvailable('localStorage')) {
@@ -28,6 +31,36 @@ class App extends Component {
         storageError: true
       });
     }
+  }
+  getDefaultStyles() {
+    return this.state.routes.map(route => ({
+      data: { ...route },
+      key: route.id,
+      style: {
+        height: 0,
+        opacity: 1
+      }
+    }));
+  }
+  getStyles() {
+    return this.state.routes.map(route => {
+      return {
+        data: {
+          ...route
+        },
+        key: route.id,
+        style: {
+          height: spring('70', presets.gentle),
+          opacity: spring(1, presets.gentle)
+        }
+      };
+    });
+  }
+  willEnter() {
+    return {
+      height: 0,
+      opacity: 1
+    };
   }
   getCurrentLocation() {
     if ('geolocation' in window.navigator) {
@@ -110,7 +143,10 @@ class App extends Component {
         routes: newRoutes
       });
       localStorage.setItem('routes', JSON.stringify(newRoutes));
-      this.props.history.push(`/route/${newRoute.id}`);
+      window.setTimeout(
+        () => this.props.history.push(`/route/${newRoute.id}`),
+        500
+      );
     }
   }
   handleDeleteRoute(e, id) {
@@ -200,40 +236,54 @@ class App extends Component {
             <div className="App-list">
               <p className="App-intro">Your Previous Routes</p>
               <hr />
-              <ul>
-                {this.state.routes.length ? (
-                  this.state.routes.map(route => (
-                    <li className="App-list-item" key={route.id}>
-                      <Link
-                        to={`/route/${route.id}`}
-                        className="App-routes-link"
-                      >
-                        <span>
-                          <img
-                            className="App-routes-icon"
-                            src={routeIcon}
-                            width="50px"
-                            alt="Route icon"
-                          />
-                        </span>
-                        <span className="App-list-text">
-                          {route.origin.formatted_address}
-                          <hr />
-                          {route.destination.formatted_address}
-                        </span>
-                      </Link>
-                      <button
-                        className="App-delete"
-                        onClick={e => this.handleDeleteRoute(e, route.id)}
-                      >
-                        <img src={deleteIcon} alt="Delete" />
-                      </button>
-                    </li>
-                  ))
-                ) : (
-                  <li>There isn't any</li>
+              <TransitionMotion
+                defaultStyles={this.getDefaultStyles()}
+                styles={this.getStyles()}
+                willEnter={this.willEnter}
+              >
+                {styles => (
+                  <ul>
+                    {styles.length ? (
+                      styles.map(route => (
+                        <li
+                          className="App-list-item"
+                          key={route.key}
+                          style={route.style}
+                        >
+                          <Link
+                            to={`/route/${route.data.id}`}
+                            className="App-routes-link"
+                          >
+                            <span>
+                              <img
+                                className="App-routes-icon"
+                                src={routeIcon}
+                                width="50px"
+                                alt="Route icon"
+                              />
+                            </span>
+                            <span className="App-list-text">
+                              {route.data.origin.formatted_address}
+                              <hr />
+                              {route.data.destination.formatted_address}
+                            </span>
+                          </Link>
+                          <button
+                            className="App-delete"
+                            onClick={e =>
+                              this.handleDeleteRoute(e, route.data.id)
+                            }
+                          >
+                            <img src={deleteIcon} alt="Delete" />
+                          </button>
+                        </li>
+                      ))
+                    ) : (
+                      <li>There isn't any</li>
+                    )}
+                  </ul>
                 )}
-              </ul>
+              </TransitionMotion>
             </div>
           </main>
         )}

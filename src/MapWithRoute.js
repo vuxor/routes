@@ -36,7 +36,6 @@ const RouteDetail = compose(
         },
         (result, status) => {
           if (status === window.google.maps.DirectionsStatus.OK) {
-            console.log(result);
             this.setState({
               directions: result
             });
